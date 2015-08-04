@@ -124,6 +124,7 @@ namespace MakeBoot
             switch (confirmationInput.Key)
             {
                 case ConsoleKey.Y:
+                    Console.WriteLine("Extracting ISO to drive, please do not close the window, it will close automatically once the extraction has completed.");
                     getISOLocationAndExtract(driveLetter);
                     break;
                 case ConsoleKey.N:
@@ -145,7 +146,7 @@ namespace MakeBoot
             using (FileStream ISOStream = File.Open(ISOName, FileMode.Open))
             {
                 CDReader Reader = new CDReader(ISOStream, true, true);
-                ExtractDirectory(Reader.Root, ExtractionPath + Path.GetFileNameWithoutExtension(ISOName) + "\\", "");
+                ExtractDirectory(Reader.Root, ExtractionPath, "");
                 Reader.Dispose();
             }
         }
@@ -165,9 +166,9 @@ namespace MakeBoot
             {
                 using (Stream FileStr = finfo.OpenRead())
                 {
-                    using (FileStream Fs = File.Create(RootPath + "\\" + finfo.Name)) // Here you can Set the BufferSize Also e.g. File.Create(RootPath + "\\" + finfo.Name, 4 * 1024)
+                    using (FileStream Fs = File.Create(RootPath + "\\" + finfo.Name))
                     {
-                        FileStr.CopyTo(Fs, 4 * 1024); // Buffer Size is 4 * 1024 but you can modify it in your code as per your need
+                        FileStr.CopyTo(Fs, 4 * 1024);
                     }
                 }
             }
