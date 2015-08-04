@@ -135,7 +135,6 @@ namespace MakeBoot
             switch (confirmationInput.Key)
             {
                 case ConsoleKey.Y:
-                    Console.WriteLine("Extracting ISO to drive, please do not close the window, it will close automatically once the extraction has completed.");
                     getISOLocationAndExtract(driveLetter);
                     break;
                 case ConsoleKey.N:
@@ -148,6 +147,8 @@ namespace MakeBoot
         {
             Console.Write("\n\nEnter the full path to your Windows ISO file and hit enter: ");
             string isoPath = Console.ReadLine().ToString();
+
+            Console.WriteLine("Extracting ISO to drive, please do not close the window, it will close automatically once the extraction has completed.");
 
             ExtractISO(isoPath, driveLetter.KeyChar + @":\");
         }
