@@ -74,8 +74,19 @@ namespace MakeBoot
                     clearDrive();
                     break;
                 case ConsoleKey.N:
-                    Console.Clear();
-                    selectDriveNumber();
+                    Console.Write("\n\nSelect another drive? (Y/N): ");
+                    ConsoleKeyInfo selectAnotherDrive = Console.ReadKey();
+
+                    switch (selectAnotherDrive.Key)
+                    {
+                        case ConsoleKey.Y:
+                            selectDriveNumber();
+                            break;
+                        case ConsoleKey.N:
+                            Console.WriteLine("Exiting...");
+                            Environment.Exit(0);
+                            break;
+                    }
                     break;
             }
         }
