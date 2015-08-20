@@ -49,7 +49,7 @@ namespace MakeBoot
             diskPartConsole.StartInfo.UseShellExecute = false;
             diskPartConsole.StartInfo.RedirectStandardInput = true;
             diskPartConsole.StartInfo.RedirectStandardOutput = true;
-            diskPartConsole.StartInfo.FileName = @"C:\Windows\SysWOW64\diskpart.exe";
+            diskPartConsole.StartInfo.FileName = @"C:\Windows\System32\diskpart.exe";
             diskPartConsole.StartInfo.CreateNoWindow = false;
 
             diskPartConsole.Start();
