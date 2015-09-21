@@ -1,0 +1,25 @@
+version: 1.0.{build}
+
+clone_folder: c:\build
+
+configuration: Release
+
+build:
+  verbosity: minimal
+
+before_build:
+  - nuget restore "MakeBoot\MakeBoot.sln"
+
+build_script:
+  - msbuild "MakeBoot\MakeBoot.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:OutputPath=C:\build\output
+
+after_build:
+  - mkdir zip
+  - git clone https://github.com/Wargog/MakeBoot.git zip\src
+  - copy output\*.exe zip
+  - copy output\*.dll zip
+  - copy output\*.config zip
+
+artifacts:
+  - path: zip
+    name: MakeBoot
